@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<?php
+//Variables needed for program to run
+session_start();
+$_SESSION['login_check']=false;
+$_SESSION['logout']=false;
+$_SESSION['staff_check']=false;
+?>
+<head>
+
+<link rel="stylesheet" href="css/reset.css">
+
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+<center>
+<?php //Titles
+
+include_once 'header.php';
+?>   	
+<form action="login_page.php" method="POST">
+<br>
+<br>
+<br>
+<h2>Login</h2>
+<br>
+<p>This is the login page for Covid Tracker. Please fill out the following infomation to login.</p>
+<br>
+<br>
+
+<?php //Code to check for errors in URL ?>
+<div class="error">
+<?php
+if(isset($_GET["error"])) {
+
+if($_GET["error"]=="error") {
+   echo "<p>The infomation you entered is incorect!</p>";
+}
+if ($_GET["error"]=="emptyInput") {
+    echo "<p>Please enter your login details!</p>";
+   }
+if ($_GET["error"]=="emptyInputLogin_email") {
+    echo "<p>Please enter a email!</p>";
+   }
+if ($_GET["error"]=="emptyInputLogin_password") {
+    echo "<p>Please enter a password!</p>";
+   }
+
+}
+?>
+</div>
+<br>
+<br>
+<?php //Inputs (email and password) ?>
+<u><h3>Email</u></h3>
+<br>
+<input type="text" name="email" placeholder="Email">
+<br>
+<br>
+<u><h3>Password</u></h3>
+<br>
+<input type="password" name="password" placeholder="Password">
+<br>
+<br>
+<br>
+<br>
+<input type="submit" value="Login" name="sub">
+<br>
+<br>
+
+
+
+<?php
+//If the submit button is pressed
+if(isset($_POST['sub'])) {
+
+   
+//Variables needed for code 
+if(isset($_POST['password'])) {
+    $password=$_POST['password'];
+} 
+if(isset($_POST['email'])) {
+    $email=$_POST['email'];
+}     
+
+//In case of error
+if($email==null && $password==null) {
+    header("location: login_page.php?error=emptyInput");
+    exit();
+}
+if($email==null) {
+    header("location: login_page.php?error=emptyInputLogin_email");
+    exit();
+}
+if($password==null) {
+    header("location: login_page.php?error=emptyInputLogin_password");
+    exit();
+}
+
+//Database connection
+include_once 'includes/dbh.inc.php';
+   $sql="SELECT password FROM users WHERE email='$email';";
+   mysqli_select_db($conn, 'users');  
+$result=mysqli_query($conn, $sql) or trigger_error(mysqli_error($conn));
+$row=mysqli_fetch_array($result);
+
+   if($result==Null) {
+    die('Could not get data: '.mysql_error());
+   }
+   //Variables for password
+   $password = sha1($password);
+   $data_password=$row['password'];
+
+if($password==$data_password) {
+
+//This variable is used to check if the user has logged in
+    $_SESSION['login_check']=true;
+
+//This code find outs if the user is a staff
+$sql_staff ="SELECT staff FROM users WHERE email='$email';";
+mysqli_select_db($conn, 'users');
+$result_staff=mysqli_query($conn, $sql_staff) or trigger_error(mysqli_error($conn));
+$row_staff=mysqli_fetch_array($result_staff);
+
+if(!$result_staff) {
+ die('Could not get data: '.mysql_error());
+}
+$staff=$row_staff['staff'];
+//This checks if the user is a staff
+if($staff=="YES") {
+    $_SESSION['staff_check']=true;
+} else {
+    $_SESSION['staff_check']=false;
+}
+//Code to get the users ID
+$sql_ID ="SELECT userID FROM users WHERE email='$email';";
+mysqli_select_db($conn, 'users');
+$result_ID=mysqli_query($conn, $sql_ID) or trigger_error(mysqli_error($conn));
+$row_ID=mysqli_fetch_array($result_ID);
+if(!$result_ID) {
+ die('Could not get data: '.mysql_error());
+}
+$_SESSION['userID']=$row_ID['userID'];
+//To get the users name
+//First Name
+ $sql_firstName="SELECT first_name FROM users WHERE school_id='$email';";
+   mysqli_select_db($conn, 'users');
+$result_firstName=mysqli_query($conn, $sql_firstName) or trigger_error(mysqli_error($conn));
+$row_firstName=mysqli_fetch_array($result_firstName);
+$_SESSION['firstName']=$row_firstName['first_name'];
+
+//Last Name
+ $sql_lastName="SELECT last_name FROM users WHERE school_id='$email';";
+   mysqli_select_db($conn, 'users');
+$result_lastName=mysqli_query($conn, $sql_lastName) or trigger_error(mysqli_error($conn));
+$row_lastName=mysqli_fetch_array($result_lastName);
+$_SESSION['lastName']=$row_lastName['last_name'];
+  
+
+//Variable that supplies the logout button on the nav bar
+$_SESSION['logout']=true;
+//Takes user to the homepage
+  header("location: homepage.php");
+   exit();
+} else {
+   header("location: login_page.php?error=error");
+   exit();
+}
+}
+?>
+
+</center>
+</body>
+
+
+</form>
+</html>	
