@@ -1,0 +1,1321 @@
+<!DOCTYPE html>
+
+<?php
+//Variables needed to run program
+session_start();
+$_SESSION['login_check']=false;
+$_SESSION['logout']=false;
+$_SESSION['staff_check']=false;
+?>
+<head>
+
+   <link rel="stylesheet" href="css/reset.css">
+
+
+   <link rel="stylesheet" href="css/style.css">
+
+
+</head>
+
+
+
+
+<body>
+<center>	 
+<form action="includes/sign_up.inc.php" method="POST">
+
+<?php //Titles ?>
+<?php
+include_once 'header.php';
+?>
+<br>
+<br>
+<br>
+<h2> Sign Up </h2>
+<br>
+<p>This is the Sign Up page for Covid Tracker. Please fill out the following infomation to login.</p>
+<br>
+<br>
+
+
+<?php //Personal Infomation ?>
+<br>
+<br>
+<div class="error">
+<?php
+
+if(isset($_GET["error"])) {
+
+   if($_GET["error"]=="emptyinput") {
+   echo "<p>Enter all infomation!</p>";
+   } 
+   if ($_GET["error"]=="invalidEmail") {
+      echo "<p>The email you have entered is not correct!</p>";
+
+   } if ($_GET["error"]=="emailExists") {
+      echo "<p>The email you have entered already exists!</p>";
+   }
+   if ($_GET["error"]=="school_idExists") {
+      echo "<p>The school ID you have entered already exists!</p>";
+   }
+    if ($_GET["error"]=="stmtfailed") {
+      echo "<p>Something isn't working. Try again!</p>";
+   }
+   if ($_GET["error"]=="school_idTooLong") {
+      echo "<p>The school ID you entered is not the right length!</p>";
+   }
+   if ($_GET["error"]=="none") {
+      echo "<p>You have created an account!</p>";
+   }
+   
+   }
+?>
+</div>
+<?php // Input ?>
+
+<br>
+<br>
+<h3>Personal Infomation </h3>
+<br>
+<?php // Email Input ?>
+<u><h3>Email</u></h3>
+<br>
+<input type="text" name="email" placeholder="Email" maxlength=50>
+<br>
+<br>
+<?php // Password Input ?>
+<u><h3>Password</u></h3>
+<br>
+<input type="password" name="password" placeholder="Password">
+<br>
+<br>
+<?php // First Name Input ?>
+<u><h3>First Name</u></h3>
+<br>
+<input type="text" name="first_name" placeholder="First Name" maxlength=25>
+<br>
+<br>
+<?php // Last Name Input ?>
+<u><h3>Last Name</u></h3>
+<br>
+<input type="text" name="last_name" placeholder="Last Name" maxlength=25>
+<br>
+<br>
+<?php // Birthdate Input ?>
+<u><h3>Birthdate</u></h3>
+<br>
+<input type="date" name="birthdate">
+<br>
+<br>
+<?php // Address Input ?>
+<u><h3>Address</u></h3>
+<br>
+<input type="text" name="address" placeholder="Address">
+<br>
+<br>
+<br>
+<br>
+<h3>School Infomation </h3>
+<br>
+<?php // School ID Input ?>
+<u><h3>School ID</u></h3>
+<br>
+<input type="text" name="school_id" placeholder="Scool ID" maxlength="6">
+<br>
+<br>
+
+
+<br>
+
+<br>
+
+
+
+<?php //Class seclection code ?>
+
+
+
+<?php // Day 1 Inputs ?>
+<b><u><h3>Day 1:</b></u></h3>
+<br>
+<u><h4>Period 1</u></h4>
+<br>
+<label for="select"/label>
+<select name="d1_p1" id="classes">
+<option value="Select">Select</option>
+<option value="Accounting">Accounting</option>
+<option value="Ancient History">Ancient History</option>
+<option value="Biology">Biology</option>
+<option value="Business Studies">Business Studies</option>
+<option value="Business and Languages">Business and Languages</option>
+<option value="Business">Business</option>
+<option value="Chemistry">Chemistry</option>
+<option value="Design">Design</option>
+<option value="Digital Solutions">Digital Solutions</option>
+<option value="Drama">Drama</option>
+<option value="Economics">Economics</option>
+<option value="Engineering">Engineering</option>
+<option value="English as an Additional Language">English as an Additional Language</option>
+<option value="English">English</option>
+<option value="Essential English">Essential English</option>
+<option value="Essential Mathematics">Essential Mathematics</option>
+<option value="Film, TV and New Media">Film, TV and New Media</option>
+<option value="Fitness">Fitness</option>
+<option value="General Mathematics">General Mathematics</option>
+<option value="Geography">Geography</option>
+<option value="Graphics">Graphics</option>
+<option value="Health Education">Health Education</option>
+<option value="Health and Physical Education (HPE)">Health and Physical Education (HPE)</option>
+<option value="Humanities">Humanities</option>
+<option value="ICT">ICT</option>
+<option value="Legal Studies">Legal Studies</option>
+<option value="Literature">Literature</option>
+<option value="Mathematical Methods">Mathematical Methods</option>
+<option value="Media Arts in Practice">Media Arts in Practice</option>
+<option value="Modern History">Modern History</option>
+<option value="Music ">Music</option>
+<option value="Philosophy and Reason">Philosophy and Reason</option>
+<option value="Physical Education">Physical Education</option>
+<option value="Physics">Physics</option>
+<option value="Psychology">Psychology</option>
+<option value="Recreation">Recreation</option>
+<option value="Religion and Ethics">Religion and Ethics</option>
+
+<option value="Social & Community Studies">Social & Community Studies</option>
+<option value="Specialist Mathematics">Specialist Mathematics</option>
+<option value="Study of Religion">Study of Religion</option>
+<option value="Tourism">Tourism</option>
+<option value="Visual Art">Visual Art</option>
+<option value="Visual Arts in Practice ">Visual Arts in Practice</option>
+</select>
+<br>
+<br>
+<input type="text" name="class_d1_p1" placeholder="Class Location" maxlength="20">
+<br>
+<br>
+
+
+<u><h4>Period 2</u></h4>
+<br>
+<label for="select"/label>
+<select name="d1_p2" id="classes">
+<option value="Select">Select</option>
+<option value="Accounting">Accounting</option>
+<option value="Ancient History">Ancient History</option>
+<option value="Biology">Biology</option>
+<option value="Business Studies">Business Studies</option>
+<option value="Business and Languages">Business and Languages</option>
+<option value="Business">Business</option>
+<option value="Chemistry">Chemistry</option>
+<option value="Design">Design</option>
+<option value="Digital Solutions">Digital Solutions</option>
+<option value="Drama">Drama</option>
+<option value="Economics">Economics</option>
+<option value="Engineering">Engineering</option>
+<option value="English as an Additional Language">English as an Additional Language</option>
+<option value="English">English</option>
+<option value="Essential English">Essential English</option>
+<option value="Essential Mathematics">Essential Mathematics</option>
+<option value="Film, TV and New Media">Film, TV and New Media</option>
+<option value="Fitness">Fitness</option>
+<option value="General Mathematics">General Mathematics</option>
+<option value="Geography">Geography</option>
+<option value="Graphics">Graphics</option>
+<option value="Health Education">Health Education</option>
+<option value="Health and Physical Education (HPE)">Health and Physical Education (HPE)</option>
+<option value="Humanities">Humanities</option>
+<option value="ICT">ICT</option>
+<option value="Legal Studies">Legal Studies</option>
+<option value="Literature">Literature</option>
+<option value="Mathematical Methods">Mathematical Methods</option>
+<option value="Media Arts in Practice">Media Arts in Practice</option>
+<option value="Modern History">Modern History</option>
+<option value="Music ">Music</option>
+<option value="Philosophy and Reason">Philosophy and Reason</option>
+<option value="Physical Education">Physical Education</option>
+<option value="Physics">Physics</option>
+<option value="Psychology">Psychology</option>
+<option value="Recreation">Recreation</option>
+<option value="Religion and Ethics">Religion and Ethics</option>
+<option value="Social & Community Studies">Social & Community Studies</option>
+<option value="Specialist Mathematics">Specialist Mathematics</option>
+<option value="Study of Religion">Study of Religion</option>
+<option value="Tourism">Tourism</option>
+<option value="Visual Art">Visual Art</option>
+<option value="Visual Arts in Practice ">Visual Arts in Practice</option>
+</select>
+<br>
+<br>
+<input type="text" name="class_d1_p2" placeholder="Class Location" maxlength="20">
+<br>
+<br>
+
+
+
+
+<u><h4>Period 3</u></h4>
+<br>
+<label for="select"/label>
+<select name="d1_p3" id="classes">
+<option value="Select">Select</option>
+<option value="Accounting">Accounting</option>
+<option value="Ancient History">Ancient History</option>
+<option value="Biology">Biology</option>
+<option value="Business Studies">Business Studies</option>
+<option value="Business and Languages">Business and Languages</option>
+<option value="Business">Business</option>
+<option value="Chemistry">Chemistry</option>
+<option value="Design">Design</option>
+<option value="Digital Solutions">Digital Solutions</option>
+<option value="Drama">Drama</option>
+<option value="Economics">Economics</option>
+<option value="Engineering">Engineering</option>
+<option value="English as an Additional Language">English as an Additional Language</option>
+<option value="English">English</option>
+<option value="Essential English">Essential English</option>
+<option value="Essential Mathematics">Essential Mathematics</option>
+<option value="Film, TV and New Media">Film, TV and New Media</option>
+<option value="Fitness">Fitness</option>
+<option value="General Mathematics">General Mathematics</option>
+<option value="Geography">Geography</option>
+<option value="Graphics">Graphics</option>
+<option value="Health Education">Health Education</option>
+<option value="Health and Physical Education (HPE)">Health and Physical Education (HPE)</option>
+<option value="Humanities">Humanities</option>
+<option value="ICT">ICT</option>
+<option value="Legal Studies">Legal Studies</option>
+<option value="Literature">Literature</option>
+<option value="Mathematical Methods">Mathematical Methods</option>
+<option value="Media Arts in Practice">Media Arts in Practice</option>
+<option value="Modern History">Modern History</option>
+<option value="Music ">Music</option>
+<option value="Philosophy and Reason">Philosophy and Reason</option>
+<option value="Physical Education">Physical Education</option>
+<option value="Physics">Physics</option>
+<option value="Psychology">Psychology</option>
+<option value="Recreation">Recreation</option>
+<option value="Religion and Ethics">Religion and Ethics</option>
+<option value="Social & Community Studies">Social & Community Studies</option>
+<option value="Specialist Mathematics">Specialist Mathematics</option>
+<option value="Study of Religion">Study of Religion</option>
+<option value="Tourism">Tourism</option>
+<option value="Visual Art">Visual Art</option>
+<option value="Visual Arts in Practice ">Visual Arts in Practice</option>
+</select>
+<br>
+<br>
+<input type="text" name="class_d1_p3" placeholder="Class Location" maxlength="20">
+<br>
+<br>
+
+
+<u><h4>Period 4</u></h4>
+<br>
+<label for="select"/label>
+<select name="d1_p4" id="classes">
+<option value="Select">Select</option>
+<option value="Accounting">Accounting</option>
+<option value="Ancient History">Ancient History</option>
+<option value="Biology">Biology</option>
+<option value="Business Studies">Business Studies</option>
+<option value="Business and Languages">Business and Languages</option>
+<option value="Business">Business</option>
+<option value="Chemistry">Chemistry</option>
+<option value="Design">Design</option>
+<option value="Digital Solutions">Digital Solutions</option>
+<option value="Drama">Drama</option>
+<option value="Economics">Economics</option>
+<option value="Engineering">Engineering</option>
+<option value="English as an Additional Language">English as an Additional Language</option>
+<option value="English">English</option>
+<option value="Essential English">Essential English</option>
+<option value="Essential Mathematics">Essential Mathematics</option>
+<option value="Film, TV and New Media">Film, TV and New Media</option>
+<option value="Fitness">Fitness</option>
+<option value="General Mathematics">General Mathematics</option>
+<option value="Geography">Geography</option>
+<option value="Graphics">Graphics</option>
+<option value="Health Education">Health Education</option>
+<option value="Health and Physical Education (HPE)">Health and Physical Education (HPE)</option>
+<option value="Humanities">Humanities</option>
+<option value="ICT">ICT</option>
+<option value="Legal Studies">Legal Studies</option>
+<option value="Literature">Literature</option>
+<option value="Mathematical Methods">Mathematical Methods</option>
+<option value="Media Arts in Practice">Media Arts in Practice</option>
+<option value="Modern History">Modern History</option>
+<option value="Music ">Music</option>
+<option value="Philosophy and Reason">Philosophy and Reason</option>
+<option value="Physical Education">Physical Education</option>
+<option value="Physics">Physics</option>
+<option value="Psychology">Psychology</option>
+<option value="Recreation">Recreation</option>
+<option value="Religion and Ethics">Religion and Ethics</option>
+<option value="Social & Community Studies">Social & Community Studies</option>
+<option value="Specialist Mathematics">Specialist Mathematics</option>
+<option value="Study of Religion">Study of Religion</option>
+<option value="Tourism">Tourism</option>
+<option value="Visual Art">Visual Art</option>
+<option value="Visual Arts in Practice ">Visual Arts in Practice</option>
+</select>
+<br>
+<br>
+<input type="text" name="class_d1_p4" placeholder="Class Location" maxlength="20">
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+<?php // Day 2 Inputs ?>
+<b><u><h3>Day 2:</b></u></h3>
+<br>
+<u><h4>Period 1</u></h4>
+<br>
+<label for="select"/label>
+<select name="d2_p1" id="classes">
+<option value="Select">Select</option>
+<option value="Accounting">Accounting</option>
+<option value="Ancient History">Ancient History</option>
+<option value="Biology">Biology</option>
+<option value="Business Studies">Business Studies</option>
+<option value="Business and Languages">Business and Languages</option>
+<option value="Business">Business</option>
+<option value="Chemistry">Chemistry</option>
+<option value="Design">Design</option>
+<option value="Digital Solutions">Digital Solutions</option>
+<option value="Drama">Drama</option>
+<option value="Economics">Economics</option>
+<option value="Engineering">Engineering</option>
+<option value="English as an Additional Language">English as an Additional Language</option>
+<option value="English">English</option>
+<option value="Essential English">Essential English</option>
+<option value="Essential Mathematics">Essential Mathematics</option>
+<option value="Film, TV and New Media">Film, TV and New Media</option>
+<option value="Fitness">Fitness</option>
+<option value="General Mathematics">General Mathematics</option>
+<option value="Geography">Geography</option>
+<option value="Graphics">Graphics</option>
+<option value="Health Education">Health Education</option>
+<option value="Health and Physical Education (HPE)">Health and Physical Education (HPE)</option>
+<option value="Humanities">Humanities</option>
+<option value="ICT">ICT</option>
+<option value="Legal Studies">Legal Studies</option>
+<option value="Literature">Literature</option>
+<option value="Mathematical Methods">Mathematical Methods</option>
+<option value="Media Arts in Practice">Media Arts in Practice</option>
+<option value="Modern History">Modern History</option>
+<option value="Music ">Music</option>
+<option value="Philosophy and Reason">Philosophy and Reason</option>
+<option value="Physical Education">Physical Education</option>
+<option value="Physics">Physics</option>
+<option value="Psychology">Psychology</option>
+<option value="Recreation">Recreation</option>
+<option value="Religion and Ethics">Religion and Ethics</option>
+<option value="Social & Community Studies">Social & Community Studies</option>
+<option value="Specialist Mathematics">Specialist Mathematics</option>
+<option value="Study of Religion">Study of Religion</option>
+<option value="Tourism">Tourism</option>
+<option value="Visual Art">Visual Art</option>
+<option value="Visual Arts in Practice ">Visual Arts in Practice</option>
+</select>
+<br>
+<br>
+<input type="text" name="class_d2_p1" placeholder="Class Location" maxlength="20">
+<br>
+<br>
+
+
+
+<u><h4>Period 2</u></h4>
+<br>
+<label for="select"/label>
+<select name="d2_p2" id="classes">
+<option value="Select">Select</option>
+<option value="Accounting">Accounting</option>
+<option value="Ancient History">Ancient History</option>
+<option value="Biology">Biology</option>
+<option value="Business Studies">Business Studies</option>
+<option value="Business and Languages">Business and Languages</option>
+<option value="Business">Business</option>
+<option value="Chemistry">Chemistry</option>
+<option value="Design">Design</option>
+<option value="Digital Solutions">Digital Solutions</option>
+<option value="Drama">Drama</option>
+<option value="Economics">Economics</option>
+<option value="Engineering">Engineering</option>
+<option value="English as an Additional Language">English as an Additional Language</option>
+<option value="English">English</option>
+<option value="Essential English">Essential English</option>
+<option value="Essential Mathematics">Essential Mathematics</option>
+<option value="Film, TV and New Media">Film, TV and New Media</option>
+<option value="Fitness">Fitness</option>
+<option value="General Mathematics">General Mathematics</option>
+<option value="Geography">Geography</option>
+<option value="Graphics">Graphics</option>
+<option value="Health Education">Health Education</option>
+<option value="Health and Physical Education (HPE)">Health and Physical Education (HPE)</option>
+<option value="Humanities">Humanities</option>
+<option value="ICT">ICT</option>
+<option value="Legal Studies">Legal Studies</option>
+<option value="Literature">Literature</option>
+<option value="Mathematical Methods">Mathematical Methods</option>
+<option value="Media Arts in Practice">Media Arts in Practice</option>
+<option value="Modern History">Modern History</option>
+<option value="Music ">Music</option>
+<option value="Philosophy and Reason">Philosophy and Reason</option>
+<option value="Physical Education">Physical Education</option>
+<option value="Physics">Physics</option>
+<option value="Psychology">Psychology</option>
+<option value="Recreation">Recreation</option>
+<option value="Religion and Ethics">Religion and Ethics</option>
+<option value="Social & Community Studies">Social & Community Studies</option>
+<option value="Specialist Mathematics">Specialist Mathematics</option>
+<option value="Study of Religion">Study of Religion</option>
+<option value="Tourism">Tourism</option>
+<option value="Visual Art">Visual Art</option>
+<option value="Visual Arts in Practice ">Visual Arts in Practice</option>
+</select>
+<br>
+<br>
+<input type="text" name="class_d2_p2" placeholder="Class Location" maxlength="20">
+<br>
+<br>
+
+
+
+
+
+<u><h4>Period 3</u></h4>
+<br>
+<label for="select"/label>
+<select name="d2_p3" id="classes">
+<option value="Select">Select</option>
+<option value="Accounting">Accounting</option>
+<option value="Ancient History">Ancient History</option>
+<option value="Biology">Biology</option>
+<option value="Business Studies">Business Studies</option>
+<option value="Business and Languages">Business and Languages</option>
+<option value="Business">Business</option>
+<option value="Chemistry">Chemistry</option>
+<option value="Design">Design</option>
+<option value="Digital Solutions">Digital Solutions</option>
+<option value="Drama">Drama</option>
+<option value="Economics">Economics</option>
+<option value="Engineering">Engineering</option>
+<option value="English as an Additional Language">English as an Additional Language</option>
+<option value="English">English</option>
+<option value="Essential English">Essential English</option>
+<option value="Essential Mathematics">Essential Mathematics</option>
+<option value="Film, TV and New Media">Film, TV and New Media</option>
+<option value="Fitness">Fitness</option>
+<option value="General Mathematics">General Mathematics</option>
+<option value="Geography">Geography</option>
+<option value="Graphics">Graphics</option>
+<option value="Health Education">Health Education</option>
+<option value="Health and Physical Education (HPE)">Health and Physical Education (HPE)</option>
+<option value="Humanities">Humanities</option>
+<option value="ICT">ICT</option>
+<option value="Legal Studies">Legal Studies</option>
+<option value="Literature">Literature</option>
+<option value="Mathematical Methods">Mathematical Methods</option>
+<option value="Media Arts in Practice">Media Arts in Practice</option>
+<option value="Modern History">Modern History</option>
+<option value="Music ">Music</option>
+<option value="Philosophy and Reason">Philosophy and Reason</option>
+<option value="Physical Education">Physical Education</option>
+<option value="Physics">Physics</option>
+<option value="Psychology">Psychology</option>
+<option value="Recreation">Recreation</option>
+<option value="Religion and Ethics">Religion and Ethics</option>
+<option value="Social & Community Studies">Social & Community Studies</option>
+<option value="Specialist Mathematics">Specialist Mathematics</option>
+<option value="Study of Religion">Study of Religion</option>
+<option value="Tourism">Tourism</option>
+<option value="Visual Art">Visual Art</option>
+<option value="Visual Arts in Practice ">Visual Arts in Practice</option>
+</select>
+<br>
+<br>
+<input type="text" name="class_d2_p3" placeholder="Class Location" maxlength="20">
+<br>
+<br>
+
+
+
+<u><h4>Period 4</u></h4>
+<br>
+<label for="select"/label>
+<select name="d2_p4" id="classes">
+<option value="Select">Select</option>
+<option value="Accounting">Accounting</option>
+<option value="Ancient History">Ancient History</option>
+<option value="Biology">Biology</option>
+<option value="Business Studies">Business Studies</option>
+<option value="Business and Languages">Business and Languages</option>
+<option value="Business">Business</option>
+<option value="Chemistry">Chemistry</option>
+<option value="Design">Design</option>
+<option value="Digital Solutions">Digital Solutions</option>
+<option value="Drama">Drama</option>
+<option value="Economics">Economics</option>
+<option value="Engineering">Engineering</option>
+<option value="English as an Additional Language">English as an Additional Language</option>
+<option value="English">English</option>
+<option value="Essential English">Essential English</option>
+<option value="Essential Mathematics">Essential Mathematics</option>
+<option value="Film, TV and New Media">Film, TV and New Media</option>
+<option value="Fitness">Fitness</option>
+<option value="General Mathematics">General Mathematics</option>
+<option value="Geography">Geography</option>
+<option value="Graphics">Graphics</option>
+<option value="Health Education">Health Education</option>
+<option value="Health and Physical Education (HPE)">Health and Physical Education (HPE)</option>
+<option value="Humanities">Humanities</option>
+<option value="ICT">ICT</option>
+<option value="Legal Studies">Legal Studies</option>
+<option value="Literature">Literature</option>
+<option value="Mathematical Methods">Mathematical Methods</option>
+<option value="Media Arts in Practice">Media Arts in Practice</option>
+<option value="Modern History">Modern History</option>
+<option value="Music ">Music</option>
+<option value="Philosophy and Reason">Philosophy and Reason</option>
+<option value="Physical Education">Physical Education</option>
+<option value="Physics">Physics</option>
+<option value="Psychology">Psychology</option>
+<option value="Recreation">Recreation</option>
+<option value="Religion and Ethics">Religion and Ethics</option>
+<option value="Social & Community Studies">Social & Community Studies</option>
+<option value="Specialist Mathematics">Specialist Mathematics</option>
+<option value="Study of Religion">Study of Religion</option>
+<option value="Tourism">Tourism</option>
+<option value="Visual Art">Visual Art</option>
+<option value="Visual Arts in Practice ">Visual Arts in Practice</option>
+</select>
+<br>
+<br>
+<input type="text" name="class_d2_p4" placeholder="Class Location" maxlength="20">
+<br>
+<br>
+<br>
+<br>
+
+
+<?php // Day 3 Inputs ?>
+<b><u><h3>Day 3:</b></u></h3>
+<br>
+<u><h4>Period 1</u></h4>
+<br>
+<label for="select"/label>
+<select name="d3_p1" id="classes">
+<option value="Select">Select</option>
+<option value="Accounting">Accounting</option>
+<option value="Ancient History">Ancient History</option>
+<option value="Biology">Biology</option>
+<option value="Business Studies">Business Studies</option>
+<option value="Business and Languages">Business and Languages</option>
+<option value="Business">Business</option>
+<option value="Chemistry">Chemistry</option>
+<option value="Design">Design</option>
+<option value="Digital Solutions">Digital Solutions</option>
+<option value="Drama">Drama</option>
+<option value="Economics">Economics</option>
+<option value="Engineering">Engineering</option>
+<option value="English as an Additional Language">English as an Additional Language</option>
+<option value="English">English</option>
+<option value="Essential English">Essential English</option>
+<option value="Essential Mathematics">Essential Mathematics</option>
+<option value="Film, TV and New Media">Film, TV and New Media</option>
+<option value="Fitness">Fitness</option>
+<option value="General Mathematics">General Mathematics</option>
+<option value="Geography">Geography</option>
+<option value="Graphics">Graphics</option>
+<option value="Health Education">Health Education</option>
+<option value="Health and Physical Education (HPE)">Health and Physical Education (HPE)</option>
+<option value="Humanities">Humanities</option>
+<option value="ICT">ICT</option>
+<option value="Legal Studies">Legal Studies</option>
+<option value="Literature">Literature</option>
+<option value="Mathematical Methods">Mathematical Methods</option>
+<option value="Media Arts in Practice">Media Arts in Practice</option>
+<option value="Modern History">Modern History</option>
+<option value="Music ">Music</option>
+<option value="Philosophy and Reason">Philosophy and Reason</option>
+<option value="Physical Education">Physical Education</option>
+<option value="Physics">Physics</option>
+<option value="Psychology">Psychology</option>
+<option value="Recreation">Recreation</option>
+<option value="Religion and Ethics">Religion and Ethics</option>
+<option value="Social & Community Studies">Social & Community Studies</option>
+<option value="Specialist Mathematics">Specialist Mathematics</option>
+<option value="Study of Religion">Study of Religion</option>
+<option value="Tourism">Tourism</option>
+<option value="Visual Art">Visual Art</option>
+<option value="Visual Arts in Practice ">Visual Arts in Practice</option>
+</select>
+<br>
+<br>
+<input type="text" name="class_d3_p1" placeholder="Class Location" maxlength="20">
+<br>
+<br>
+
+
+
+<u><h4>Period 2</u></h4>
+<br>
+<label for="select"/label>
+<select name="d3_p2" id="classes">
+<option value="Select">Select</option>
+<option value="Accounting">Accounting</option>
+<option value="Ancient History">Ancient History</option>
+<option value="Biology">Biology</option>
+<option value="Business Studies">Business Studies</option>
+<option value="Business and Languages">Business and Languages</option>
+<option value="Business">Business</option>
+<option value="Chemistry">Chemistry</option>
+<option value="Design">Design</option>
+<option value="Digital Solutions">Digital Solutions</option>
+<option value="Drama">Drama</option>
+<option value="Economics">Economics</option>
+<option value="Engineering">Engineering</option>
+<option value="English as an Additional Language">English as an Additional Language</option>
+<option value="English">English</option>
+<option value="Essential English">Essential English</option>
+<option value="Essential Mathematics">Essential Mathematics</option>
+<option value="Film, TV and New Media">Film, TV and New Media</option>
+<option value="Fitness">Fitness</option>
+<option value="General Mathematics">General Mathematics</option>
+<option value="Geography">Geography</option>
+<option value="Graphics">Graphics</option>
+<option value="Health Education">Health Education</option>
+<option value="Health and Physical Education (HPE)">Health and Physical Education (HPE)</option>
+<option value="Humanities">Humanities</option>
+<option value="ICT">ICT</option>
+<option value="Legal Studies">Legal Studies</option>
+<option value="Literature">Literature</option>
+<option value="Mathematical Methods">Mathematical Methods</option>
+<option value="Media Arts in Practice">Media Arts in Practice</option>
+<option value="Modern History">Modern History</option>
+<option value="Music ">Music</option>
+<option value="Philosophy and Reason">Philosophy and Reason</option>
+<option value="Physical Education">Physical Education</option>
+<option value="Physics">Physics</option>
+<option value="Psychology">Psychology</option>
+<option value="Recreation">Recreation</option>
+<option value="Religion and Ethics">Religion and Ethics</option>
+<option value="Social & Community Studies">Social & Community Studies</option>
+<option value="Specialist Mathematics">Specialist Mathematics</option>
+<option value="Study of Religion">Study of Religion</option>
+<option value="Tourism">Tourism</option>
+<option value="Visual Art">Visual Art</option>
+<option value="Visual Arts in Practice ">Visual Arts in Practice</option>
+</select>
+<br>
+<br>
+<input type="text" name="class_d3_p2" placeholder="Class Location" maxlength="20">
+<br>
+<br>
+
+
+
+
+
+<u><h4>Period 3</u></h4>
+<br>
+<label for="select"/label>
+<select name="d3_p3" id="classes">
+<option value="Select">Select</option>
+<option value="Accounting">Accounting</option>
+<option value="Ancient History">Ancient History</option>
+<option value="Biology">Biology</option>
+<option value="Business Studies">Business Studies</option>
+<option value="Business and Languages">Business and Languages</option>
+<option value="Business">Business</option>
+<option value="Chemistry">Chemistry</option>
+<option value="Design">Design</option>
+<option value="Digital Solutions">Digital Solutions</option>
+<option value="Drama">Drama</option>
+<option value="Economics">Economics</option>
+<option value="Engineering">Engineering</option>
+<option value="English as an Additional Language">English as an Additional Language</option>
+<option value="English">English</option>
+<option value="Essential English">Essential English</option>
+<option value="Essential Mathematics">Essential Mathematics</option>
+<option value="Film, TV and New Media">Film, TV and New Media</option>
+<option value="Fitness">Fitness</option>
+<option value="General Mathematics">General Mathematics</option>
+<option value="Geography">Geography</option>
+<option value="Graphics">Graphics</option>
+<option value="Health Education">Health Education</option>
+<option value="Health and Physical Education (HPE)">Health and Physical Education (HPE)</option>
+<option value="Humanities">Humanities</option>
+<option value="ICT">ICT</option>
+<option value="Legal Studies">Legal Studies</option>
+<option value="Literature">Literature</option>
+<option value="Mathematical Methods">Mathematical Methods</option>
+<option value="Media Arts in Practice">Media Arts in Practice</option>
+<option value="Modern History">Modern History</option>
+<option value="Music ">Music</option>
+<option value="Philosophy and Reason">Philosophy and Reason</option>
+<option value="Physical Education">Physical Education</option>
+<option value="Physics">Physics</option>
+<option value="Psychology">Psychology</option>
+<option value="Recreation">Recreation</option>
+<option value="Religion and Ethics">Religion and Ethics</option>
+<option value="Social & Community Studies">Social & Community Studies</option>
+<option value="Specialist Mathematics">Specialist Mathematics</option>
+<option value="Study of Religion">Study of Religion</option>
+<option value="Tourism">Tourism</option>
+<option value="Visual Art">Visual Art</option>
+<option value="Visual Arts in Practice ">Visual Arts in Practice</option>
+</select>
+<br>
+<br>
+<input type="text" name="class_d3_p3" placeholder="Class Location" maxlength="20">
+<br>
+<br>
+
+
+
+<u><h4>Period 4</u></h4>
+<br>
+<label for="select"/label>
+<select name="d3_p4" id="classes">
+<option value="Select">Select</option>
+<option value="Accounting">Accounting</option>
+<option value="Ancient History">Ancient History</option>
+<option value="Biology">Biology</option>
+<option value="Business Studies">Business Studies</option>
+<option value="Business and Languages">Business and Languages</option>
+<option value="Business">Business</option>
+<option value="Chemistry">Chemistry</option>
+<option value="Design">Design</option>
+<option value="Digital Solutions">Digital Solutions</option>
+<option value="Drama">Drama</option>
+<option value="Economics">Economics</option>
+<option value="Engineering">Engineering</option>
+<option value="English as an Additional Language">English as an Additional Language</option>
+<option value="English">English</option>
+<option value="Essential English">Essential English</option>
+<option value="Essential Mathematics">Essential Mathematics</option>
+<option value="Film, TV and New Media">Film, TV and New Media</option>
+<option value="Fitness">Fitness</option>
+<option value="General Mathematics">General Mathematics</option>
+<option value="Geography">Geography</option>
+<option value="Graphics">Graphics</option>
+<option value="Health Education">Health Education</option>
+<option value="Health and Physical Education (HPE)">Health and Physical Education (HPE)</option>
+<option value="Humanities">Humanities</option>
+<option value="ICT">ICT</option>
+<option value="Legal Studies">Legal Studies</option>
+<option value="Literature">Literature</option>
+<option value="Mathematical Methods">Mathematical Methods</option>
+<option value="Media Arts in Practice">Media Arts in Practice</option>
+<option value="Modern History">Modern History</option>
+<option value="Music ">Music</option>
+<option value="Philosophy and Reason">Philosophy and Reason</option>
+<option value="Physical Education">Physical Education</option>
+<option value="Physics">Physics</option>
+<option value="Psychology">Psychology</option>
+<option value="Recreation">Recreation</option>
+<option value="Religion and Ethics">Religion and Ethics</option>
+<option value="Social & Community Studies">Social & Community Studies</option>
+<option value="Specialist Mathematics">Specialist Mathematics</option>
+<option value="Study of Religion">Study of Religion</option>
+<option value="Tourism">Tourism</option>
+<option value="Visual Art">Visual Art</option>
+<option value="Visual Arts in Practice ">Visual Arts in Practice</option>
+</select>
+<br>
+<br>
+<input type="text" name="class_d3_p4" placeholder="Class Location" maxlength="20">
+<br>
+<br>
+<br>
+<br>
+
+<?php // Day 4 Inputs ?>
+<b><u><h3>Day 4:</b></u></h3>
+<br>
+<u><h4>Period 1</u></h4>
+<br>
+<label for="select"/label>
+<select name="d4_p1" id="classes">
+<option value="Select">Select</option>
+<option value="Accounting">Accounting</option>
+<option value="Ancient History">Ancient History</option>
+<option value="Biology">Biology</option>
+<option value="Business Studies">Business Studies</option>
+<option value="Business and Languages">Business and Languages</option>
+<option value="Business">Business</option>
+<option value="Chemistry">Chemistry</option>
+<option value="Design">Design</option>
+<option value="Digital Solutions">Digital Solutions</option>
+<option value="Drama">Drama</option>
+<option value="Economics">Economics</option>
+<option value="Engineering">Engineering</option>
+<option value="English as an Additional Language">English as an Additional Language</option>
+<option value="English">English</option>
+<option value="Essential English">Essential English</option>
+<option value="Essential Mathematics">Essential Mathematics</option>
+<option value="Film, TV and New Media">Film, TV and New Media</option>
+<option value="Fitness">Fitness</option>
+<option value="General Mathematics">General Mathematics</option>
+<option value="Geography">Geography</option>
+<option value="Graphics">Graphics</option>
+<option value="Health Education">Health Education</option>
+<option value="Health and Physical Education (HPE)">Health and Physical Education (HPE)</option>
+<option value="Humanities">Humanities</option>
+<option value="ICT">ICT</option>
+<option value="Legal Studies">Legal Studies</option>
+<option value="Literature">Literature</option>
+<option value="Mathematical Methods">Mathematical Methods</option>
+<option value="Media Arts in Practice">Media Arts in Practice</option>
+<option value="Modern History">Modern History</option>
+<option value="Music ">Music</option>
+<option value="Philosophy and Reason">Philosophy and Reason</option>
+<option value="Physical Education">Physical Education</option>
+<option value="Physics">Physics</option>
+<option value="Psychology">Psychology</option>
+<option value="Recreation">Recreation</option>
+<option value="Religion and Ethics">Religion and Ethics</option>
+<option value="Social & Community Studies">Social & Community Studies</option>
+<option value="Specialist Mathematics">Specialist Mathematics</option>
+<option value="Study of Religion">Study of Religion</option>
+<option value="Tourism">Tourism</option>
+<option value="Visual Art">Visual Art</option>
+<option value="Visual Arts in Practice ">Visual Arts in Practice</option>
+</select>
+<br>
+<br>
+<input type="text" name="class_d4_p1" placeholder="Class Location" maxlength="20">
+<br>
+<br>
+
+
+
+<u><h4>Period 2</u></h4>
+<br>
+<label for="select"/label>
+<select name="d4_p2" id="classes">
+<option value="Select">Select</option>
+<option value="Accounting">Accounting</option>
+<option value="Ancient History">Ancient History</option>
+<option value="Biology">Biology</option>
+<option value="Business Studies">Business Studies</option>
+<option value="Business and Languages">Business and Languages</option>
+<option value="Business">Business</option>
+<option value="Chemistry">Chemistry</option>
+<option value="Design">Design</option>
+<option value="Digital Solutions">Digital Solutions</option>
+<option value="Drama">Drama</option>
+<option value="Economics">Economics</option>
+<option value="Engineering">Engineering</option>
+<option value="English as an Additional Language">English as an Additional Language</option>
+<option value="English">English</option>
+<option value="Essential English">Essential English</option>
+<option value="Essential Mathematics">Essential Mathematics</option>
+<option value="Film, TV and New Media">Film, TV and New Media</option>
+<option value="Fitness">Fitness</option>
+<option value="General Mathematics">General Mathematics</option>
+<option value="Geography">Geography</option>
+<option value="Graphics">Graphics</option>
+<option value="Health Education">Health Education</option>
+<option value="Health and Physical Education (HPE)">Health and Physical Education (HPE)</option>
+<option value="Humanities">Humanities</option>
+<option value="ICT">ICT</option>
+<option value="Legal Studies">Legal Studies</option>
+<option value="Literature">Literature</option>
+<option value="Mathematical Methods">Mathematical Methods</option>
+<option value="Media Arts in Practice">Media Arts in Practice</option>
+<option value="Modern History">Modern History</option>
+<option value="Music ">Music</option>
+<option value="Philosophy and Reason">Philosophy and Reason</option>
+<option value="Physical Education">Physical Education</option>
+<option value="Physics">Physics</option>
+<option value="Psychology">Psychology</option>
+<option value="Recreation">Recreation</option>
+<option value="Religion and Ethics">Religion and Ethics</option>
+<option value="Social & Community Studies">Social & Community Studies</option>
+<option value="Specialist Mathematics">Specialist Mathematics</option>
+<option value="Study of Religion">Study of Religion</option>
+<option value="Tourism">Tourism</option>
+<option value="Visual Art">Visual Art</option>
+<option value="Visual Arts in Practice ">Visual Arts in Practice</option>
+</select>
+<br>
+<br>
+<input type="text" name="class_d4_p2" placeholder="Class Location" maxlength="20">
+<br>
+<br>
+
+
+
+
+
+<u><h4>Period 3</u></h4>
+<br>
+<label for="select"/label>
+<select name="d4_p3" id="classes">
+<option value="Select">Select</option>
+<option value="Accounting">Accounting</option>
+<option value="Ancient History">Ancient History</option>
+<option value="Biology">Biology</option>
+<option value="Business Studies">Business Studies</option>
+<option value="Business and Languages">Business and Languages</option>
+<option value="Business">Business</option>
+<option value="Chemistry">Chemistry</option>
+<option value="Design">Design</option>
+<option value="Digital Solutions">Digital Solutions</option>
+<option value="Drama">Drama</option>
+<option value="Economics">Economics</option>
+<option value="Engineering">Engineering</option>
+<option value="English as an Additional Language">English as an Additional Language</option>
+<option value="English">English</option>
+<option value="Essential English">Essential English</option>
+<option value="Essential Mathematics">Essential Mathematics</option>
+<option value="Film, TV and New Media">Film, TV and New Media</option>
+<option value="Fitness">Fitness</option>
+<option value="General Mathematics">General Mathematics</option>
+<option value="Geography">Geography</option>
+<option value="Graphics">Graphics</option>
+<option value="Health Education">Health Education</option>
+<option value="Health and Physical Education (HPE)">Health and Physical Education (HPE)</option>
+<option value="Humanities">Humanities</option>
+<option value="ICT">ICT</option>
+<option value="Legal Studies">Legal Studies</option>
+<option value="Literature">Literature</option>
+<option value="Mathematical Methods">Mathematical Methods</option>
+<option value="Media Arts in Practice">Media Arts in Practice</option>
+<option value="Modern History">Modern History</option>
+<option value="Music ">Music</option>
+<option value="Philosophy and Reason">Philosophy and Reason</option>
+<option value="Physical Education">Physical Education</option>
+<option value="Physics">Physics</option>
+<option value="Psychology">Psychology</option>
+<option value="Recreation">Recreation</option>
+<option value="Religion and Ethics">Religion and Ethics</option>
+<option value="Social & Community Studies">Social & Community Studies</option>
+<option value="Specialist Mathematics">Specialist Mathematics</option>
+<option value="Study of Religion">Study of Religion</option>
+<option value="Tourism">Tourism</option>
+<option value="Visual Art">Visual Art</option>
+<option value="Visual Arts in Practice ">Visual Arts in Practice</option>
+</select>
+<br>
+<br>
+<input type="text" name="class_d4_p3" placeholder="Class Location" maxlength="20">
+<br>
+<br>
+
+
+
+<u><h4>Period 4</u></h4>
+<br>
+<label for="select"/label>
+<select name="d4_p4" id="classes">
+<option value="Select">Select</option>
+<option value="Accounting">Accounting</option>
+<option value="Ancient History">Ancient History</option>
+<option value="Biology">Biology</option>
+<option value="Business Studies">Business Studies</option>
+<option value="Business and Languages">Business and Languages</option>
+<option value="Business">Business</option>
+<option value="Chemistry">Chemistry</option>
+<option value="Design">Design</option>
+<option value="Digital Solutions">Digital Solutions</option>
+<option value="Drama">Drama</option>
+<option value="Economics">Economics</option>
+<option value="Engineering">Engineering</option>
+<option value="English as an Additional Language">English as an Additional Language</option>
+<option value="English">English</option>
+<option value="Essential English">Essential English</option>
+<option value="Essential Mathematics">Essential Mathematics</option>
+<option value="Film, TV and New Media">Film, TV and New Media</option>
+<option value="Fitness">Fitness</option>
+<option value="General Mathematics">General Mathematics</option>
+<option value="Geography">Geography</option>
+<option value="Graphics">Graphics</option>
+<option value="Health Education">Health Education</option>
+<option value="Health and Physical Education (HPE)">Health and Physical Education (HPE)</option>
+<option value="Humanities">Humanities</option>
+<option value="ICT">ICT</option>
+<option value="Legal Studies">Legal Studies</option>
+<option value="Literature">Literature</option>
+<option value="Mathematical Methods">Mathematical Methods</option>
+<option value="Media Arts in Practice">Media Arts in Practice</option>
+<option value="Modern History">Modern History</option>
+<option value="Music ">Music</option>
+<option value="Philosophy and Reason">Philosophy and Reason</option>
+<option value="Physical Education">Physical Education</option>
+<option value="Physics">Physics</option>
+<option value="Psychology">Psychology</option>
+<option value="Recreation">Recreation</option>
+<option value="Religion and Ethics">Religion and Ethics</option>
+<option value="Social & Community Studies">Social & Community Studies</option>
+<option value="Specialist Mathematics">Specialist Mathematics</option>
+<option value="Study of Religion">Study of Religion</option>
+<option value="Tourism">Tourism</option>
+<option value="Visual Art">Visual Art</option>
+<option value="Visual Arts in Practice ">Visual Arts in Practice</option>
+</select>
+<br>
+<br>
+<input type="text" name="class_d4_p4" placeholder="Class Location" maxlength="20">
+<br>
+<br>
+<br>
+<br>
+
+<?php // Day 5 Inputs ?>
+<b><u><h3>Day 5:</b></u></h3>
+<br>
+<u><h4>Period 1</u></h4>
+<br>
+<label for="select"/label>
+<select name="d5_p1" id="classes">
+<option value="Select">Select</option>
+<option value="Accounting">Accounting</option>
+<option value="Ancient History">Ancient History</option>
+<option value="Biology">Biology</option>
+<option value="Business Studies">Business Studies</option>
+<option value="Business and Languages">Business and Languages</option>
+<option value="Business">Business</option>
+<option value="Chemistry">Chemistry</option>
+<option value="Design">Design</option>
+<option value="Digital Solutions">Digital Solutions</option>
+<option value="Drama">Drama</option>
+<option value="Economics">Economics</option>
+<option value="Engineering">Engineering</option>
+<option value="English as an Additional Language">English as an Additional Language</option>
+<option value="English">English</option>
+<option value="Essential English">Essential English</option>
+<option value="Essential Mathematics">Essential Mathematics</option>
+<option value="Film, TV and New Media">Film, TV and New Media</option>
+<option value="Fitness">Fitness</option>
+<option value="General Mathematics">General Mathematics</option>
+<option value="Geography">Geography</option>
+<option value="Graphics">Graphics</option>
+<option value="Health Education">Health Education</option>
+<option value="Health and Physical Education (HPE)">Health and Physical Education (HPE)</option>
+<option value="Humanities">Humanities</option>
+<option value="ICT">ICT</option>
+<option value="Legal Studies">Legal Studies</option>
+<option value="Literature">Literature</option>
+<option value="Mathematical Methods">Mathematical Methods</option>
+<option value="Media Arts in Practice">Media Arts in Practice</option>
+<option value="Modern History">Modern History</option>
+<option value="Music ">Music</option>
+<option value="Philosophy and Reason">Philosophy and Reason</option>
+<option value="Physical Education">Physical Education</option>
+<option value="Physics">Physics</option>
+<option value="Psychology">Psychology</option>
+<option value="Recreation">Recreation</option>
+<option value="Religion and Ethics">Religion and Ethics</option>
+<option value="Social & Community Studies">Social & Community Studies</option>
+<option value="Specialist Mathematics">Specialist Mathematics</option>
+<option value="Study of Religion">Study of Religion</option>
+<option value="Tourism">Tourism</option>
+<option value="Visual Art">Visual Art</option>
+<option value="Visual Arts in Practice ">Visual Arts in Practice</option>
+</select>
+<br>
+<br>
+<input type="text" name="class_d5_p1" placeholder="Class Location" maxlength="20">
+<br>
+<br>
+
+
+
+
+<u><h4>Period 2</u></h4>
+<br>
+<label for="select"/label>
+<select name="d5_p2" id="classes">
+<option value="Select">Select</option>
+<option value="Accounting">Accounting</option>
+<option value="Ancient History">Ancient History</option>
+<option value="Biology">Biology</option>
+<option value="Business Studies">Business Studies</option>
+<option value="Business and Languages">Business and Languages</option>
+<option value="Business">Business</option>
+<option value="Chemistry">Chemistry</option>
+<option value="Design">Design</option>
+<option value="Digital Solutions">Digital Solutions</option>
+<option value="Drama">Drama</option>
+<option value="Economics">Economics</option>
+<option value="Engineering">Engineering</option>
+<option value="English as an Additional Language">English as an Additional Language</option>
+<option value="English">English</option>
+<option value="Essential English">Essential English</option>
+<option value="Essential Mathematics">Essential Mathematics</option>
+<option value="Film, TV and New Media">Film, TV and New Media</option>
+<option value="Fitness">Fitness</option>
+<option value="General Mathematics">General Mathematics</option>
+<option value="Geography">Geography</option>
+<option value="Graphics">Graphics</option>
+<option value="Health Education">Health Education</option>
+<option value="Health and Physical Education (HPE)">Health and Physical Education (HPE)</option>
+<option value="Humanities">Humanities</option>
+<option value="ICT">ICT</option>
+<option value="Legal Studies">Legal Studies</option>
+<option value="Literature">Literature</option>
+<option value="Mathematical Methods">Mathematical Methods</option>
+<option value="Media Arts in Practice">Media Arts in Practice</option>
+<option value="Modern History">Modern History</option>
+<option value="Music ">Music</option>
+<option value="Philosophy and Reason">Philosophy and Reason</option>
+<option value="Physical Education">Physical Education</option>
+<option value="Physics">Physics</option>
+<option value="Psychology">Psychology</option>
+<option value="Recreation">Recreation</option>
+<option value="Religion and Ethics">Religion and Ethics</option>
+<option value="Social & Community Studies">Social & Community Studies</option>
+<option value="Specialist Mathematics">Specialist Mathematics</option>
+<option value="Study of Religion">Study of Religion</option>
+<option value="Tourism">Tourism</option>
+<option value="Visual Art">Visual Art</option>
+<option value="Visual Arts in Practice ">Visual Arts in Practice</option>
+</select>
+<br>
+<br>
+<input type="text" name="class_d5_p2" placeholder="Class Location" maxlength="20">
+<br>
+<br>
+
+
+
+
+
+<u><h4>Period 3</u></h4>
+<br>
+<label for="select"/label>
+<select name="d5_p3" id="classes">
+<option value="Select">Select</option>
+<option value="Accounting">Accounting</option>
+<option value="Ancient History">Ancient History</option>
+<option value="Biology">Biology</option>
+<option value="Business Studies">Business Studies</option>
+<option value="Business and Languages">Business and Languages</option>
+<option value="Business">Business</option>
+<option value="Chemistry">Chemistry</option>
+<option value="Design">Design</option>
+<option value="Digital Solutions">Digital Solutions</option>
+<option value="Drama">Drama</option>
+<option value="Economics">Economics</option>
+<option value="Engineering">Engineering</option>
+<option value="English as an Additional Language">English as an Additional Language</option>
+<option value="English">English</option>
+<option value="Essential English">Essential English</option>
+<option value="Essential Mathematics">Essential Mathematics</option>
+<option value="Film, TV and New Media">Film, TV and New Media</option>
+<option value="Fitness">Fitness</option>
+<option value="General Mathematics">General Mathematics</option>
+<option value="Geography">Geography</option>
+<option value="Graphics">Graphics</option>
+<option value="Health Education">Health Education</option>
+<option value="Health and Physical Education (HPE)">Health and Physical Education (HPE)</option>
+<option value="Humanities">Humanities</option>
+<option value="ICT">ICT</option>
+<option value="Legal Studies">Legal Studies</option>
+<option value="Literature">Literature</option>
+<option value="Mathematical Methods">Mathematical Methods</option>
+<option value="Media Arts in Practice">Media Arts in Practice</option>
+<option value="Modern History">Modern History</option>
+<option value="Music ">Music</option>
+<option value="Philosophy and Reason">Philosophy and Reason</option>
+<option value="Physical Education">Physical Education</option>
+<option value="Physics">Physics</option>
+<option value="Psychology">Psychology</option>
+<option value="Recreation">Recreation</option>
+<option value="Religion and Ethics">Religion and Ethics</option>
+<option value="Social & Community Studies">Social & Community Studies</option>
+<option value="Specialist Mathematics">Specialist Mathematics</option>
+<option value="Study of Religion">Study of Religion</option>
+<option value="Tourism">Tourism</option>
+<option value="Visual Art">Visual Art</option>
+<option value="Visual Arts in Practice ">Visual Arts in Practice</option>
+</select>
+<br>
+<br>
+<input type="text" name="class_d5_p3" placeholder="Class Location" maxlength="20">
+<br>
+<br>
+
+
+
+<u><h4>Period 4</u></h4>
+<br>
+<label for="select"/label>
+<select name="d5_p4" id="classes">
+<option value="Select">Select</option>
+<option value="Accounting">Accounting</option>
+<option value="Ancient History">Ancient History</option>
+<option value="Biology">Biology</option>
+<option value="Business Studies">Business Studies</option>
+<option value="Business and Languages">Business and Languages</option>
+<option value="Business">Business</option>
+<option value="Chemistry">Chemistry</option>
+<option value="Design">Design</option>
+<option value="Digital Solutions">Digital Solutions</option>
+<option value="Drama">Drama</option>
+<option value="Economics">Economics</option>
+<option value="Engineering">Engineering</option>
+<option value="English as an Additional Language">English as an Additional Language</option>
+<option value="English">English</option>
+<option value="Essential English">Essential English</option>
+<option value="Essential Mathematics">Essential Mathematics</option>
+<option value="Film, TV and New Media">Film, TV and New Media</option>
+<option value="Fitness">Fitness</option>
+<option value="General Mathematics">General Mathematics</option>
+<option value="Geography">Geography</option>
+<option value="Graphics">Graphics</option>
+<option value="Health Education">Health Education</option>
+<option value="Health and Physical Education (HPE)">Health and Physical Education (HPE)</option>
+<option value="Humanities">Humanities</option>
+<option value="ICT">ICT</option>
+<option value="Legal Studies">Legal Studies</option>
+<option value="Literature">Literature</option>
+<option value="Mathematical Methods">Mathematical Methods</option>
+<option value="Media Arts in Practice">Media Arts in Practice</option>
+<option value="Modern History">Modern History</option>
+<option value="Music ">Music</option>
+<option value="Philosophy and Reason">Philosophy and Reason</option>
+<option value="Physical Education">Physical Education</option>
+<option value="Physics">Physics</option>
+<option value="Psychology">Psychology</option>
+<option value="Recreation">Recreation</option>
+<option value="Religion and Ethics">Religion and Ethics</option>
+<option value="Social & Community Studies">Social & Community Studies</option>
+<option value="Specialist Mathematics">Specialist Mathematics</option>
+<option value="Study of Religion">Study of Religion</option>
+<option value="Tourism">Tourism</option>
+<option value="Visual Art">Visual Art</option>
+<option value="Visual Arts in Practice ">Visual Arts in Practice</option>
+</select>
+<br>
+<br>
+<input type="text" name="class_d5_p4" placeholder="Class Location" maxlength="20">
+<br>
+<br>
+<br>
+<br>
+
+
+<br>
+<br>
+
+<input type="submit" value="Sign Up" name="sub">
+
+
+
+
+<br>
+<br>
+</center>
+</body>
+
+
+</form>
+</html>	
